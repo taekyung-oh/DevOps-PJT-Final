@@ -1,7 +1,6 @@
 # 자산 관리 시스템 
 ## Architecture
-![Final_project-STEP_01 drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/54361848/8042c789-403e-45df-b154-2d102ec756ef)
-
+![Final_project-STEP_01 drawio (1)](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/54361848/6f073587-6ece-4aaa-9b7d-ac084773ba31)
 
 ## use case
 ### CI/CD 파이프라인
