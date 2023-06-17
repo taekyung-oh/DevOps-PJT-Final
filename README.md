@@ -3,6 +3,9 @@
 ![Final_project-STEP_01 drawio (1)](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/54361848/6f073587-6ece-4aaa-9b7d-ac084773ba31)
 
 ## User Story
+** 추후 보완 **
+
+## Product Backlog
 ### 📍 CI/CD 파이프라인
 ECS에 배포되어 있는 WEB/WAS 컨테이너 소스를 깃허브를 통해 관리 및 CI/CD를 수행하기 위해 AWS CodePipeline, CodeBuild, CodeDeploy 서비스를 이용해야 합니다.
 정보 자산 시스템 데모 시연을 위해 ALB, ECR, ECS fargate, RDS, S3를 사용합니다.
