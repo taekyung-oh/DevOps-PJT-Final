@@ -67,7 +67,7 @@ async function getUsers (req, res) {
     await sleep(2000)
 
     const traceid = await instrumentRequest('getUsers', () => { 
-        httpCall('http://bighead-alb-2084785238.ap-northeast-2.elb.amazonaws.com/course/courses')
+        httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/course/courses')        
         // httpCall('http://localhost:8081/course/courses')
     });
     res.end(traceid);
