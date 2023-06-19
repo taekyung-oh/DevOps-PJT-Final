@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECR
+sname: Deploy to Amazon ECR
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   ECR_REGISTRY: 159088646233.dkr.ecr.ap-northeast-2.amazonaws.com
-  ECR_REPOSITORY: app
+  ECR_REPOSITORY: content
   IMAGE_TAG: latest
 jobs:
   deploy:
@@ -40,9 +40,5 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./app/content
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:"content_"$IMAGE_TAG
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:course$IMAGE_TAG ./app/course
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:"course_"$IMAGE_TAG
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./app/user
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:"user_"$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
