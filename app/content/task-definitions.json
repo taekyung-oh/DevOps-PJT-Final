@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/bighead-content-was:5",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/bighead-content-was:6",
     "containerDefinitions": [
         {
             "name": "content",
-            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/content:0aa4e2f31cc243ab483328a6a64746b2f6d5858e",
+            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/content:feb7100e17d3b6a27b17e5181fdcb1dc7a07a060",
             "cpu": 0,
             "portMappings": [
                 {
@@ -60,7 +60,7 @@
     "taskRoleArn": "arn:aws:iam::159088646233:role/ecsTaskRole",
     "executionRoleArn": "arn:aws:iam::159088646233:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 5,
+    "revision": 6,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -106,7 +106,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-06-20T12:20:40.412Z",
+    "registeredAt": "2023-06-20T12:30:46.014Z",
     "registeredBy": "arn:aws:iam::159088646233:user/pak8266",
     "tags": []
 }
