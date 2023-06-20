@@ -11,11 +11,10 @@ env:
   AWS_REGION: ap-northeast-2
   ECR_REGISTRY: ${{ secrets.AWS_SECRET_ECR_REGISTRY }}
   ECR_REPOSITORY: content
-  ECS_SERVICE: contentService
-  ECS_CLUSTER: contentCluster
+  ECS_SERVICE: CICD-cluster
+  ECS_CLUSTER: CICD-cluster
   ECS_TASK_DEFINITION: contentTask
-  CONTAINER_NAME: content
-  IMAGE_TAG: content
+  CONTAINER_NAME: latest
 jobs:
   deploy:
     name: Deploy
@@ -46,12 +45,7 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./app/content
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-    - name: Download Task Definition Template
-      run: |
-          aws ecs describe-task-definition \
-            --task-definition $ \
-            --query taskDefinition \
-            > task-definition.json
+
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
