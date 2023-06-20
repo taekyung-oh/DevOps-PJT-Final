@@ -17,7 +17,7 @@ env:
   CONTAINER_NAME: bighead-content-was
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy content-was
     runs-on: ubuntu-latest
     environment: production
 
