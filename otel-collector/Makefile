@@ -32,7 +32,7 @@ LDFLAGS=-ldflags "-s -w -X $(BUILD_INFO_IMPORT_PATH).GitHash=$(GIT_SHA) \
 
 GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
-DOCKER_NAMESPACE=taekyungoh
+DOCKER_NAMESPACE= ${{ secrets.AWS_SECRET_ECR_REGISTRY }}
 COMPONENT=awscollector
 TOOLS_MOD_DIR := $(abspath ./tools/workflow/linters)
 TOOLS_BIN_DIR := $(abspath ./bin)
