@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+    paths:
+      - "app/content/**"
+      - ".github/workflows/content.yml"
 env:
   AWS_REGION: ap-northeast-2
-  ECR_REGISTRY: 159088646233.dkr.ecr.ap-northeast-2.amazonaws.com
+  ECR_REGISTRY: ${{ secrets.AWS_SECRET_ECR_REGISTRY }}
   ECR_REPOSITORY: content
   ECS_SERVICE: contentService
   ECS_CLUSTER: contentCluster
@@ -37,7 +37,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
+    - name: "[content]Build, tag, and push image to Amazon ECR"
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -53,11 +53,3 @@ jobs:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
-
-    - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
