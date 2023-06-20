@@ -32,6 +32,15 @@ const common_span_attributes = { signal: 'trace', language: 'javascript' };
 // request metrics 
 const { updateTotalBytesSent, updateLatencyTime, updateApiRequestsMetric } = require('./request-metrics');
 
+require('dotenv').config()
+
+const mysql = require('mysql2/promise');
+
+const host = process.env.RDS_HOST
+const user = process.env.RDS_USER
+const password = process.env.RDS_PASSWORD
+const database = process.env.RDS_DATABASE
+
 // start server for request metrics and traces
 function startServer() {
     const server = http.createServer(handleRequest);
@@ -66,10 +75,18 @@ async function handleRequest(req, res) {
 async function getUsers (req, res) {
     await sleep(2000)
 
-    const traceid = await instrumentRequest('getUsers', () => { 
-        httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/course/courses')        
+    const connection = await mysql.createConnection({host, user, password, database});
+
+    let traceid = await instrumentRequest('getUser', async () => { 
+        const result = await connection.query("SELECT * FROM user WHERE id = '1'");
+        console.log(result)
+    });
+    
+    traceid = await instrumentRequest('getUsers', async () => { 
+        await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/course/courses')        
         // httpCall('http://localhost:8081/course/courses')
     });
+
     res.end(traceid);
 }
 
