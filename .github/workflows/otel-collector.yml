@@ -1,0 +1,48 @@
+name: Deploy to Amazon ECR [otelcollector]
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "otel-collector/**"
+      - ".github/workflows/otel-collector.yml"
+env:
+  AWS_REGION: ap-northeast-2
+  ECR_REGISTRY: ${{ secrets.AWS_SECRET_ECR_REGISTRY }}
+  ECR_REPOSITORY: otel-collector
+  ECS_SERVICE: contentService
+  ECS_CLUSTER: contentCluster
+  ECS_TASK_DEFINITION: contentTask
+  CONTAINER_NAME: content
+  IMAGE_TAG: otel-collector
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: "[content]Build, tag, and push image to Amazon ECR"
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./app/content
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
