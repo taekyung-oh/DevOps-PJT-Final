@@ -66,10 +66,11 @@ async function handleRequest(req, res) {
 async function getCourses (req, res) {
     await sleep(1000)
 
-    const traceid = await instrumentRequest('getCourses', () => { 
-        httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/content/contents')
+    const traceid = await instrumentRequest('getCourses', async () => { 
+        await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/content/contents')
         //httpCall('http://localhost:8082/content/contents')
     });
+
     res.end(traceid);
 }
 
@@ -85,7 +86,7 @@ function getTraceIdJson() {
     const randomNumber = otelTraceId.substring(8);
     const xrayTraceId = "1-" + timestamp + "-" + randomNumber;
     return JSON.stringify({ "traceId": xrayTraceId });
-  }
+}
 
 function mimicPayLoadSize() {
     return Math.random() * 1000;
@@ -93,7 +94,8 @@ function mimicPayLoadSize() {
 
 async function httpCall(url) {
     try {
-        const response = await fetch(url); 
+        const response = await fetch(url);
+
         console.log(`made a request to ${url}`);
         if (!response.ok) {
             throw new Error(`Error! status: ${response.status}`);
@@ -107,14 +109,19 @@ async function instrumentRequest(spanName, _callback) {
     const span = tracer.startSpan(spanName, {
         attributes: common_span_attributes
     });
+
     const ctx = api.trace.setSpan(api.context.active(), span);
+
     let traceid;
+
     await api.context.with(ctx, async () => {
         console.log(`Responding to ${spanName}`);
         await _callback(); 
         traceid = getTraceIdJson();
+
         span.end();
     });
+
     return traceid;
 }
 
