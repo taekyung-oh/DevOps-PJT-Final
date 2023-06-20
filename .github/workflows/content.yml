@@ -11,7 +11,7 @@ env:
   AWS_REGION: ap-northeast-2
   ECR_REGISTRY: ${{ secrets.AWS_SECRET_ECR_REGISTRY }}
   ECR_REPOSITORY: content
-  ECS_SERVICE: CICD-cluster
+  ECS_SERVICE: CICD-SVR-Content
   ECS_CLUSTER: CICD-cluster
   ECS_TASK_DEFINITION: "app/content/task-definitions.json"
   CONTAINER_NAME: content
