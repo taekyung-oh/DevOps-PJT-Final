@@ -50,21 +50,18 @@ const latencyTimeMetric = meter.createHistogram(LATENCY_TIME + testingId, {
     unit: 'ms'
 });
 
-function updateTotalBytesSent(bytes, apiName, statusCode) {
-    console.log("Updating total bytes sent");
+function updateTotalBytesSent(bytes, apiName, statusCode) {    
     const attributes = { signal: 'metric',  language: 'javascript', metricType: 'request', 'apiName': apiName, [SemanticAttributes.HTTP_STATUS_CODE]: statusCode };
     totalBytesSentMetric.add(bytes, attributes);
 };
 
-function updateLatencyTime(returnTime, apiName, statusCode) {
-    console.log("Updating latency time");
+function updateLatencyTime(returnTime, apiName, statusCode) {    
     const attributes = { signal: 'metric',  language: 'javascript', metricType: 'request', 'apiName': apiName, [SemanticAttributes.HTTP_STATUS_CODE]: statusCode };
     latencyTimeMetric.record(returnTime, attributes);
 };
 
 function updateApiRequestsMetric() {
-    totalApiRequests += 1;
-    console.log("API Requests:" + totalApiRequests);
+    totalApiRequests += 1;    
 }
 
 module.exports = { updateLatencyTime, updateTotalBytesSent, updateApiRequestsMetric };
