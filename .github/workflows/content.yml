@@ -14,7 +14,7 @@ env:
   ECS_SERVICE: content-service
   ECS_CLUSTER: bighead-cluster
   ECS_TASK_DEFINITION: "app/content/task-definitions.json"
-  CONTAINER_NAME: bighead-content-was
+  CONTAINER_NAME: content
 jobs:
   deploy:
     name: Deploy content-was
