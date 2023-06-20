@@ -1,13 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/bighead-content-was:4",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/bighead-content-was:5",
     "containerDefinitions": [
         {
-            "name": "content-was",
-            "image": "taekyungoh/content-was:1.3",
+            "name": "content",
+            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/content:0aa4e2f31cc243ab483328a6a64746b2f6d5858e",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "content-was-8080-tcp",
+                    "name": "content-8080-tcp",
                     "containerPort": 8080,
                     "hostPort": 8080,
                     "protocol": "tcp",
@@ -22,7 +22,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/bighead-content-was",
+                    "awslogs-group": "/ecs/CICD-content",
                     "awslogs-region": "ap-northeast-2",
                     "awslogs-stream-prefix": "ecs"
                 }
@@ -60,7 +60,7 @@
     "taskRoleArn": "arn:aws:iam::159088646233:role/ecsTaskRole",
     "executionRoleArn": "arn:aws:iam::159088646233:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 4,
+    "revision": 5,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -71,10 +71,16 @@
             "name": "ecs.capability.execution-role-awslogs"
         },
         {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -100,7 +106,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-06-20T05:16:45.390Z",
-    "registeredBy": "arn:aws:iam::159088646233:user/dkrldkdwk0",
+    "registeredAt": "2023-06-20T12:20:40.412Z",
+    "registeredBy": "arn:aws:iam::159088646233:user/pak8266",
     "tags": []
 }
