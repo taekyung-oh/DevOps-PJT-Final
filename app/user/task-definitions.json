@@ -1,13 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/CICD-user:8",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/bighead-user-was:10",
     "containerDefinitions": [
         {
-            "name": "user",
-            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/user:45a3f91a5be0c21324bbf18b1980e2cbeea38b98",
+            "name": "user-was",
+            "image": "taekyungoh/user-was:1.4",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "user-8080-tcp",
+                    "name": "user-was-8080-tcp",
                     "containerPort": 8080,
                     "hostPort": 8080,
                     "protocol": "tcp",
@@ -15,14 +15,31 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "RDS_HOST",
+                    "value": "bighead-user.cjybiasweuzf.ap-northeast-2.rds.amazonaws.com"
+                },
+                {
+                    "name": "RDS_PASSWORD",
+                    "value": "bighead1!"
+                },
+                {
+                    "name": "RDS_DATABASE",
+                    "value": "user"
+                },
+                {
+                    "name": "RDS_USER",
+                    "value": "admin"
+                }
+            ],
             "mountPoints": [],
             "volumesFrom": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/CICD-user",
+                    "awslogs-group": "/ecs/bighead-user-was",
                     "awslogs-region": "ap-northeast-2",
                     "awslogs-stream-prefix": "ecs"
                 }
@@ -56,11 +73,11 @@
             }
         }
     ],
-    "family": "CICD-user",
+    "family": "bighead-user-was",
     "taskRoleArn": "arn:aws:iam::159088646233:role/ecsTaskRole",
     "executionRoleArn": "arn:aws:iam::159088646233:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 8,
+    "revision": 10,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -71,16 +88,10 @@
             "name": "ecs.capability.execution-role-awslogs"
         },
         {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -106,7 +117,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-06-20T11:32:38.571Z",
-    "registeredBy": "arn:aws:iam::159088646233:user/pak8266",
+    "registeredAt": "2023-06-20T10:13:51.788Z",
+    "registeredBy": "arn:aws:iam::159088646233:user/dkrldkdwk0",
     "tags": []
 }
