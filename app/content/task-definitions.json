@@ -30,7 +30,7 @@
         },
         {
             "name": "aws-otel-collector",
-            "image": "taekyungoh/awscollector:v0.30.0",
+            "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.30.0",
             "cpu": 0,
             "portMappings": [],
             "essential": true,
@@ -40,7 +40,7 @@
             "environment": [
                 {
                     "name": "AWS_PROMETHEUS_ENDPOINT",
-                    "value": "https://aps-workspaces.ap-northeast-2.amazonaws.com/workspaces/ws-54c4aa12-6ec1-4952-aa47-669ce19344c4/api/v1/remote_write"
+                    "value": "https://aps-workspaces.ap-northeast-2.amazonaws.com/workspaces/ws-e32a03c2-993b-4cce-a397-1e400b35752c/api/v1/remote_write"
                 }
             ],
             "mountPoints": [],
