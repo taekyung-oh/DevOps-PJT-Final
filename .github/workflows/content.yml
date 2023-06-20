@@ -13,7 +13,7 @@ env:
   ECR_REPOSITORY: content
   ECS_SERVICE: CICD-cluster
   ECS_CLUSTER: CICD-cluster
-  ECS_TASK_DEFINITION: contentTask
+  ECS_TASK_DEFINITION: "app/content/task-definitions.json"
   CONTAINER_NAME: latest
 jobs:
   deploy:
