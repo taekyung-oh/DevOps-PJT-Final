@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/CICD-course:2",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/CICD-course:6",
     "containerDefinitions": [
         {
             "name": "course",
-            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/course:1.0",
+            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/course:41345d7ac5cf1ba78a3b73835200798560a8e4c8",
             "cpu": 0,
             "portMappings": [
                 {
@@ -16,15 +16,40 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
                     "awslogs-group": "/ecs/CICD-course",
+                    "awslogs-region": "ap-northeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        },
+        {
+            "name": "aws-otel-collector",
+            "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.30.0",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,
+            "command": [
+                "--config=/etc/ecs/ecs-amp-xray.yaml"
+            ],
+            "environment": [
+                {
+                    "name": "AWS_PROMETHEUS_ENDPOINT",
+                    "value": "https://aps-workspaces.ap-northeast-2.amazonaws.com/workspaces/ws-e32a03c2-993b-4cce-a397-1e400b35752c/api/v1/remote_write"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
                     "awslogs-region": "ap-northeast-2",
                     "awslogs-stream-prefix": "ecs"
                 }
@@ -35,7 +60,7 @@
     "taskRoleArn": "arn:aws:iam::159088646233:role/ecsTaskRole",
     "executionRoleArn": "arn:aws:iam::159088646233:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 2,
+    "revision": 6,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -81,7 +106,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-06-20T06:01:11.396Z",
+    "registeredAt": "2023-06-20T11:34:17.091Z",
     "registeredBy": "arn:aws:iam::159088646233:user/pak8266",
     "tags": []
 }
