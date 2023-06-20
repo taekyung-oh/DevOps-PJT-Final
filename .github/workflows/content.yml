@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECR [content]
+name: Deploy content-was
 
 on:
   push:
