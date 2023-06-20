@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECR [course]
+name: Deploy course-was
 
 on:
   push:
