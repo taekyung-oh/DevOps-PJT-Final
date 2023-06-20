@@ -15,7 +15,7 @@ env:
   ECS_CLUSTER: contentCluster
   ECS_TASK_DEFINITION: contentTask
   CONTAINER_NAME: content
-  IMAGE_TAG: latest
+  IMAGE_TAG: content
 jobs:
   deploy:
     name: Deploy
