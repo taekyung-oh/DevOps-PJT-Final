@@ -1,0 +1,27 @@
+{
+  "name": "aws-otel-collector",
+  "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.30.0",
+  "cpu": 0,
+  "portMappings": [],
+  "essential": true,
+  "command": [
+      "--config=/etc/ecs/ecs-amp-xray.yaml"
+  ],
+  "environment": [
+      {
+          "name": "AWS_PROMETHEUS_ENDPOINT",
+          "value": "https://aps-workspaces.ap-northeast-2.amazonaws.com/workspaces/ws-e32a03c2-993b-4cce-a397-1e400b35752c/api/v1/remote_write"
+      }
+  ],
+  "mountPoints": [],
+  "volumesFrom": [],
+  "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+      }
+  }
+}
