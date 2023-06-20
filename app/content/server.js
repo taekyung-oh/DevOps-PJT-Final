@@ -66,16 +66,10 @@ async function handleRequest(req, res) {
 async function getContents (req, res) {
     await sleep(2000)
 
-    const traceid = await instrumentRequest('getContents', () => {
+    const traceid = await instrumentRequest('getContents', async () => {
         const s3 = new AWS.S3({ region: "ap-northeast-2" });
 
-        s3.listBuckets(function(err, data) {
-            if (err) {
-              console.log("Error", err);
-            } else {
-              console.log("Success", data.Buckets);
-            }
-        });
+        await s3.listBuckets().promise();
     });
     
     res.end(traceid);
