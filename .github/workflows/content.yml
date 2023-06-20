@@ -14,7 +14,7 @@ env:
   ECS_SERVICE: CICD-cluster
   ECS_CLUSTER: CICD-cluster
   ECS_TASK_DEFINITION: "app/content/task-definitions.json"
-  CONTAINER_NAME: latest
+  CONTAINER_NAME: content
 jobs:
   deploy:
     name: Deploy
