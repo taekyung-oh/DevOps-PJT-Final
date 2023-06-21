@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "user-was",
-            "image": "taekyungoh/user-was:1.4",
+            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/user:5fa8b2d581fa5d2d1307f8cb53ab78beac5a10bb",
             "cpu": 0,
             "portMappings": [
                 {
@@ -15,26 +15,27 @@
                 }
             ],
             "essential": true,
-            "environment": [
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [
                 {
                     "name": "RDS_HOST",
-                    "value": "bighead-user.cjybiasweuzf.ap-northeast-2.rds.amazonaws.com"
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/RDS_HOST"
                 },
                 {
                     "name": "RDS_PASSWORD",
-                    "value": "bighead1!"
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/RDS_PASSWORD"
                 },
                 {
                     "name": "RDS_DATABASE",
-                    "value": "user"
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/RDS_DATABASE"
                 },
                 {
                     "name": "RDS_USER",
-                    "value": "admin"
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/RDS_USER"
                 }
             ],
-            "mountPoints": [],
-            "volumesFrom": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -51,9 +52,6 @@
             "cpu": 0,
             "portMappings": [],
             "essential": true,
-            "command": [
-                "--config=/etc/ecs/ecs-amp-xray.yaml"
-            ],
             "environment": [
                 {
                     "name": "AWS_PROMETHEUS_ENDPOINT",
@@ -62,6 +60,12 @@
             ],
             "mountPoints": [],
             "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "AOT_CONFIG_CONTENT",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/AOT_CONFIG_CONTENT"
+                }
+            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
