@@ -53,7 +53,7 @@ function startServer() {
 }
 
 async function handleRequest(req, res) {
-    const requestStartTime = new Date().getMilliseconds();
+    const requestStartTime = new Date();
     const routeMapper = {
         '/user': (req, res) => {
             res.end('OK.');
@@ -92,7 +92,7 @@ async function getUsers (req, res) {
 
 function updateMetrics (res, apiName, requestStartTime) {
     updateTotalBytesSent(res._contentLength + mimicPayLoadSize(), apiName, res.statusCode);
-    updateLatencyTime(new Date().getMilliseconds() - requestStartTime, apiName, res.statusCode);
+    updateLatencyTime(new Date() - requestStartTime, apiName, res.statusCode);
     updateApiRequestsMetric();
 }
 
