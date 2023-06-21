@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "course-was",
-            "image": "taekyungoh/course-was:1.3",
+            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/course:5fa8b2d581fa5d2d1307f8cb53ab78beac5a10bb",
             "cpu": 0,
             "portMappings": [
                 {
@@ -33,10 +33,7 @@
             "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.30.0",
             "cpu": 0,
             "portMappings": [],
-            "essential": true,
-            "command": [
-                "--config=/etc/ecs/ecs-amp-xray.yaml"
-            ],
+            "essential": true,            
             "environment": [
                 {
                     "name": "AWS_PROMETHEUS_ENDPOINT",
@@ -45,6 +42,12 @@
             ],
             "mountPoints": [],
             "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "AOT_CONFIG_CONTENT",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/AOT_CONFIG_CONTENT"
+                }
+            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
