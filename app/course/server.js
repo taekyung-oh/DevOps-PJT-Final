@@ -67,7 +67,7 @@ async function getCourses (req, res) {
     await sleep(1000)
 
     const traceid = await instrumentRequest('getCourses', async () => { 
-        await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/content/contents')
+        await httpCall('https://api.bigheadck.click/content/contents')        
         //httpCall('http://localhost:8082/content/contents')
     });
 
