@@ -28,6 +28,7 @@ const cfg = create_cfg.create_config('./config.yaml');
 const api = require('@opentelemetry/api'); 
 const tracer = api.trace.getTracer('js-sample-app-tracer'); 
 const common_span_attributes = { signal: 'trace', language: 'javascript' };
+const SpanStatusCode = api.SpanStatusCode
 
 // request metrics 
 const { updateTotalBytesSent, updateLatencyTime, updateApiRequestsMetric } = require('./request-metrics');
@@ -66,28 +67,36 @@ async function handleRequest(req, res) {
             await handler (req, res);
             updateMetrics(res, req.url, requestStartTime);
         };
-    } 
+    }
     catch (err) {
-        console.log(err);
+        console.log(err);        
     }   
 }
 
 async function getUsers (req, res) {
     await sleep(2000)
 
-    const connection = await mysql.createConnection({host, user, password, database});
+    try {
+        let traceid = await instrumentRequest('getUser', async () => { 
+            const connection = await mysql.createConnection({host, user, password, database});
+            const result = await connection.query("SELECT * FROM user WHERE id = '1'");
 
-    let traceid = await instrumentRequest('getUser', async () => { 
-        const result = await connection.query("SELECT * FROM user WHERE id = '1'");
-        console.log(result)
-    });
-    
-    traceid = await instrumentRequest('getUsers', async () => { 
-        await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/course/courses')        
-        // httpCall('http://localhost:8081/course/courses')
-    });
+            console.log(result)
+        });
 
-    res.end(traceid);
+        traceid = await instrumentRequest('getUsers', async () => { 
+            // await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/course/courses')        
+            await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com')        
+            // httpCall('http://localhost:8081/course/courses')
+        });        
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(traceid)
+    } catch(err) {
+        console.log(err)
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end()
+    }
 }
 
 function updateMetrics (res, apiName, requestStartTime) {
@@ -112,11 +121,12 @@ async function httpCall(url) {
     try {
         const response = await fetch(url); 
         console.log(`made a request to ${url}`);
+
         if (!response.ok) {
             throw new Error(`Error! status: ${response.status}`);
         }
     } catch (err) {
-        throw new Error(`Error while fetching the ${url}`, err);
+        throw err
     }
 }
 
@@ -125,14 +135,26 @@ async function instrumentRequest(spanName, _callback) {
         attributes: common_span_attributes
     });
     const ctx = api.trace.setSpan(api.context.active(), span);
+
     let traceid;
-    await api.context.with(ctx, async () => {
-        console.log(`Responding to ${spanName}`);
-        await _callback(); 
+
+    await api.context.with(ctx, async () => {        
         traceid = getTraceIdJson();
-        span.end();
+        
+        try {
+            await _callback();
+            
+            return traceid;            
+        }
+        catch(err) {
+            span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
+                
+            throw err
+        }
+        finally {
+            span.end();            
+        }
     });
-    return traceid;
 }
 
 const sleep = delay => new Promise(resolve => setTimeout(resolve, delay));
