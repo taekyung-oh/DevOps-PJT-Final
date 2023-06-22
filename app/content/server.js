@@ -28,6 +28,7 @@ const cfg = create_cfg.create_config('./config.yaml');
 const api = require('@opentelemetry/api'); 
 const tracer = api.trace.getTracer('js-sample-app-tracer'); 
 const common_span_attributes = { signal: 'trace', language: 'javascript' };
+const SpanStatusCode = api.SpanStatusCode
 
 // request metrics 
 const { updateTotalBytesSent, updateLatencyTime, updateApiRequestsMetric } = require('./request-metrics');
