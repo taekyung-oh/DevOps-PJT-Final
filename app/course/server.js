@@ -49,7 +49,11 @@ async function handleRequest(req, res) {
         '/course': (req, res) => {
             res.end('OK.');
         },        
-        '/course/courses': getCourses        
+        '/course/courses': getCourses,
+        '/course/scheduled': (req, res) => {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end()
+        },
     }
     try {
         const handler = routeMapper[req.url]
@@ -66,12 +70,19 @@ async function handleRequest(req, res) {
 async function getCourses (req, res) {
     await sleep(1000)
 
-    const traceid = await instrumentRequest('getCourses', async () => { 
-        await httpCall('https://api.bigheadck.click/content/contents')        
-        //httpCall('http://localhost:8082/content/contents')
-    });
+    try {
+        const traceid = await instrumentRequest('getCourses', async () => { 
+            await httpCall('https://api.bigheadck.click/content/contents')        
+            //httpCall('http://localhost:8082/content/contents')
+        });
 
-    res.end(traceid);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(traceid)
+    } catch(err) {
+        console.log(err)
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end()
+    }
 }
 
 function updateMetrics (res, apiName, requestStartTime) {
@@ -101,7 +112,7 @@ async function httpCall(url) {
             throw new Error(`Error! status: ${response.status}`);
         }
     } catch (err) {
-        throw new Error(`Error while fetching the ${url}`, err);
+        throw err
     }
 }
 
@@ -115,14 +126,20 @@ async function instrumentRequest(spanName, _callback) {
     let traceid;
 
     await api.context.with(ctx, async () => {
-        console.log(`Responding to ${spanName}`);
-        await _callback(); 
         traceid = getTraceIdJson();
 
-        span.end();
-    });
+        try {
+            await _callback();
 
-    return traceid;
+            return traceid;
+        } catch(err) {
+            span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
+                
+            throw err
+        } finally {
+            span.end();            
+        }
+    });
 }
 
 const sleep = delay => new Promise(resolve => setTimeout(resolve, delay));

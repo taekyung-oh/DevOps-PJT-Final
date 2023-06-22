@@ -66,13 +66,20 @@ async function handleRequest(req, res) {
 async function getContents (req, res) {
     await sleep(2000)
 
-    const traceid = await instrumentRequest('getContents', async () => {
-        const s3 = new AWS.S3({ region: "ap-northeast-2" });
-
-        await s3.listBuckets().promise();
-    });
+    try {
+        const traceid = await instrumentRequest('getContents', async () => {
+            const s3 = new AWS.S3({ region: "ap-northeast-2" });
     
-    res.end(traceid);
+            await s3.listBuckets().promise();
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(traceid)
+        });
+    } catch(err) {
+        console.log(err)
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end()
+    }
 }
 
 function updateMetrics (res, apiName, requestStartTime) {
@@ -97,15 +104,27 @@ async function instrumentRequest(spanName, _callback) {
     const span = tracer.startSpan(spanName, {
         attributes: common_span_attributes
     });
+
     const ctx = api.trace.setSpan(api.context.active(), span);
+
     let traceid;
+
     await api.context.with(ctx, async () => {
-        console.log(`Responding to ${spanName}`);
-        await _callback(); 
         traceid = getTraceIdJson();
-        span.end();
+        
+        try {
+            await _callback();
+
+            return traceid;
+        } catch(err) {
+            span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
+                
+            throw err
+        } finally {
+            span.end();            
+        }
     });
-    return traceid;
+    
 }
 
 const sleep = delay => new Promise(resolve => setTimeout(resolve, delay));
