@@ -71,11 +71,11 @@ async function getContents (req, res) {
         const traceid = await instrumentRequest('getContents', async () => {
             const s3 = new AWS.S3({ region: "ap-northeast-2" });
     
-            await s3.listBuckets().promise();
-
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(traceid)
+            await s3.listBuckets().promise();            
         });
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(traceid)
     } catch(err) {
         console.log(err)
         res.writeHead(500, { 'Content-Type': 'application/json' });
