@@ -85,8 +85,7 @@ async function getUsers (req, res) {
         });
 
         traceid = await instrumentRequest('getUsers', async () => { 
-            // await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com/course/courses')        
-            await httpCall('http://bighead-alb-88731588.ap-northeast-2.elb.amazonaws.com')        
+            await httpCall('https://api.bigheadck.click/course/courses')
             // httpCall('http://localhost:8081/course/courses')
         });        
 
