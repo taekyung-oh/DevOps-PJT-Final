@@ -28,6 +28,7 @@ const cfg = create_cfg.create_config('./config.yaml');
 const api = require('@opentelemetry/api'); 
 const tracer = api.trace.getTracer('js-sample-app-tracer'); 
 const common_span_attributes = { signal: 'trace', language: 'javascript' };
+const SpanStatusCode = api.SpanStatusCode
 
 // request metrics 
 const { updateTotalBytesSent, updateLatencyTime, updateApiRequestsMetric } = require('./request-metrics');
@@ -50,10 +51,7 @@ async function handleRequest(req, res) {
             res.end('OK.');
         },        
         '/course/courses': getCourses,
-        '/course/scheduled': (req, res) => {
-            res.writeHead(400, { 'Content-Type': 'application/json' });
-            res.end()
-        },
+        '/course/scheduled': getScheduled,
     }
     try {
         const handler = routeMapper[req.url]
@@ -74,6 +72,22 @@ async function getCourses (req, res) {
         const traceid = await instrumentRequest('getCourses', async () => { 
             await httpCall('https://api.bigheadck.click/content/contents')        
             //httpCall('http://localhost:8082/content/contents')
+        });
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(traceid)
+    } catch(err) {
+        console.log(err)
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end()
+    }
+}
+
+async function getScheduled (req, res) {
+    try {
+        const traceid = await instrumentRequest('getScheduled', async () => { 
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end()
         });
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -136,7 +150,7 @@ async function instrumentRequest(spanName, _callback) {
             span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
                 
             throw err
-        } finally {
+        } finally {            
             span.end();            
         }
     });
