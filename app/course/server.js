@@ -85,9 +85,10 @@ async function getCourses (req, res) {
 
 async function getScheduled (req, res) {
     try {
-        const traceid = await instrumentRequest('getScheduled', async () => { 
+        const traceid = await instrumentRequest('getScheduled', async () => {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end()
+            throw new Error
         });
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -150,7 +151,7 @@ async function instrumentRequest(spanName, _callback) {
             span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
                 
             throw err
-        } finally {            
+        } finally {
             span.end();            
         }
     });
