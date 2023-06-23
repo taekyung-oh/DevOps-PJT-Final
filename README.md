@@ -1,6 +1,7 @@
 # 자산 관리 시스템 
 ## Architecture
-![Final_project-STEP_01 drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/54361848/632c05b2-0199-48f9-9607-37fdca0f9b88)
+![수정 다이어그램](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/54361848/b73fc3ea-c022-476c-b089-8fa183a7c796)
+
 
 ## User Story
 현재의 시스템의 로그 뿐 만 아니라 시스템 취약점 점검을 자동화하고 점검 결과를 통합하여 관리할 수 있도록 하는 자산관리 파이프라인 시스템을 구축하여야 합니다.
