@@ -1,0 +1,70 @@
+{
+    "version": "0",
+    "id": "5fb973dd-8a7d-2830-8f08-59b0dc9d014b",
+    "detail-type": "Security Hub Findings - Imported",
+    "source": "aws.securityhub",
+    "account": "**********",
+    "time": "2023-06-22T04:23:02Z",
+    "region": "ap-northeast-2",
+    "resources": [
+      "arn:aws:securityhub:ap-northeast-2::product/aws/config/arn:aws:config:ap-northeast-2:**********:config-rule/config-rule-0bmksw/finding/4617543a99c24e40a9ca1da10c41568e3956905b"
+    ],
+    "detail": {
+      "findings": [
+        {
+          "ProductArn": "arn:aws:securityhub:ap-northeast-2::product/aws/config",
+          "Types": [
+            "Software and Configuration Checks"
+          ],
+          "Description": "This finding is created for a resource compliance change for config rule: ssm-document-not-public",
+          "ProductName": "Config",
+          "Compliance": {
+            "Status": "NOT_AVAILABLE"
+          },
+          "CreatedAt": "2023-06-22T04:13:04.441Z",
+          "CompanyName": "AWS",
+          "FindingProviderFields": {
+            "Types": [
+              "Software and Configuration Checks"
+            ],
+            "Severity": {
+              "Label": "MEDIUM"
+            }
+          },
+          "ProductFields": {
+            "aws/securityhub/ProductName": "Config",
+            "aws/securityhub/CompanyName": "AWS",
+            "aws/securityhub/FindingId": "arn:aws:securityhub:ap-northeast-2::product/aws/config/arn:aws:config:ap-northeast-2:**********:config-rule/config-rule-0bmksw/finding/4617543a99c24e40a9ca1da10c41568e3956905b",
+            "aws/config/ConfigRuleArn": "arn:aws:config:ap-northeast-2:**********:config-rule/config-rule-0bmksw",
+            "aws/config/ConfigRuleName": "ssm-document-not-public",
+            "aws/config/ConfigComplianceType": "NOT_APPLICABLE"
+          },
+          "SchemaVersion": "2018-10-08",
+          "GeneratorId": "arn:aws:config:ap-northeast-2:**********:config-rule/config-rule-0bmksw",
+          "RecordState": "ACTIVE",
+          "Title": "ssm-document-not-public",
+          "Workflow": {
+            "Status": "NEW"
+          },
+          "Severity": {
+            "Normalized": 40,
+            "Label": "MEDIUM"
+          },
+          "UpdatedAt": "2023-06-22T04:22:53.256Z",
+          "WorkflowState": "NEW",
+          "AwsAccountId": "**********",
+          "Region": "ap-northeast-2",
+          "Id": "arn:aws:config:ap-northeast-2:**********:config-rule/config-rule-0bmksw/finding/4617543a99c24e40a9ca1da10c41568e3956905b",
+          "Resources": [
+            {
+              "Partition": "aws",
+              "Type": "Other",
+              "Region": "ap-northeast-2",
+              "Id": "arn:aws:ssm:ap-northeast-2:**********:document/test"
+            }
+          ],
+          "ProcessedAt": "2023-06-22T04:22:56.614Z"
+        }
+      ]
+    }
+  }

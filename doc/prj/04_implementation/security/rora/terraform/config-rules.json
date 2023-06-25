@@ -1,0 +1,451 @@
+{
+    "ConfigRules": [
+        {
+            "ConfigRuleName": "account-part-of-organizations",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-vvlvi6",
+            "ConfigRuleId": "config-rule-vvlvi6",
+            "Description": "Rule checks whether AWS account is part of AWS Organizations. The rule is NON_COMPLIANT if the AWS account is not part of AWS Organizations or AWS Organizations master account ID does not match rule parameter MasterAccountId.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "ACCOUNT_PART_OF_ORGANIZATIONS"
+            },
+            "InputParameters": "{}",
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "cloudtrail-enabled",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-xm0kju",
+            "ConfigRuleId": "config-rule-xm0kju",
+            "Description": "Checks if an AWS CloudTrail trail is enabled in your AWS account. The rule is NON_COMPLIANT if a trail is not enabled. Optionally, the rule checks a specific S3 bucket, Amazon Simple Notification Service (Amazon SNS) topic, and CloudWatch log group.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "CLOUD_TRAIL_ENABLED"
+            },
+            "InputParameters": "{}",
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "cloudwatch-alarm-action-check",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-qid27u",
+            "ConfigRuleId": "config-rule-qid27u",
+            "Description": "Checks if CloudWatch alarms have an action configured for the ALARM, INSUFFICIENT_DATA, or OK state. Optionally checks if any actions match a named ARN. The rule is NON_COMPLIANT if there is no action specified for the alarm or optional parameter.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::CloudWatch::Alarm"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "CLOUDWATCH_ALARM_ACTION_CHECK"
+            },
+            "InputParameters": "{\"alarmActionRequired\":\"true\",\"insufficientDataActionRequired\":\"true\",\"okActionRequired\":\"false\"}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "cloudwatch-alarm-action-enabled-check",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-8mi5gt",
+            "ConfigRuleId": "config-rule-8mi5gt",
+            "Description": "Checks if Amazon CloudWatch alarms actions are in enabled state. The rule is NON_COMPLIANT if the CloudWatch alarms actions are not in enabled state.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::CloudWatch::Alarm"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "CLOUDWATCH_ALARM_ACTION_ENABLED_CHECK"
+            },
+            "InputParameters": "{}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "ecr-private-image-scanning-enabled",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-skpf2h",
+            "ConfigRuleId": "config-rule-skpf2h",
+            "Description": "Checks if a private Amazon Elastic Container Registry (ECR) repository has image scanning enabled. The rule is NON_COMPLIANT if the private ECR repository's scan frequency is not on scan on push or continuous scan.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "ECR_PRIVATE_IMAGE_SCANNING_ENABLED"
+            },
+            "InputParameters": "{}",
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "ecs-containers-nonprivileged",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-thlo7k",
+            "ConfigRuleId": "config-rule-thlo7k",
+            "Description": "Checks if the privileged parameter in the container definition of ECSTaskDefinitions is set to ‘true’. The rule is NON_COMPLIANT if the privileged parameter is ‘true’.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::ECS::TaskDefinition"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "ECS_CONTAINERS_NONPRIVILEGED"
+            },
+            "InputParameters": "{}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "ecs-containers-readonly-access",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-k8dzfx",
+            "ConfigRuleId": "config-rule-k8dzfx",
+            "Description": "Checks if Amazon Elastic Container Service (Amazon ECS) Containers only have read-only access to its root filesystems. The rule is NON_COMPLIANT if the readonlyRootFilesystem parameter in the container definition of ECSTaskDefinitions is set to ‘false’.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::ECS::TaskDefinition"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "ECS_CONTAINERS_READONLY_ACCESS"
+            },
+            "InputParameters": "{}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "ecs-task-definition-pid-mode-check",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-x0oszn",
+            "ConfigRuleId": "config-rule-x0oszn",
+            "Description": "Checks if ECSTaskDefinitions are configured to share a host’s process namespace with its Amazon Elastic Container Service (Amazon ECS) containers. The rule is NON_COMPLIANT if the pidMode parameter is set to ‘host’.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::ECS::TaskDefinition"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "ECS_TASK_DEFINITION_PID_MODE_CHECK"
+            },
+            "InputParameters": "{}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "guardduty-enabled-centralized",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-n4yxcu",
+            "ConfigRuleId": "config-rule-n4yxcu",
+            "Description": "Checks if Amazon GuardDuty is enabled in your AWS account and AWS Region. If you provide an AWS account for centralization, the rule evaluates the GuardDuty results in the centralized account. The rule is COMPLIANT when GuardDuty is enabled.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "GUARDDUTY_ENABLED_CENTRALIZED"
+            },
+            "InputParameters": "{}",
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "iam-policy-no-statements-with-admin-access",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-tu7b7i",
+            "ConfigRuleId": "config-rule-tu7b7i",
+            "Description": "Checks whether the default version of AWS Identity and Access Management (IAM) policies do not have administrator access. If any statement has \"Effect\": \"Allow\" with \"Action\": \"*\" over \"Resource\": \"*\", the rule is non-compliant.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::IAM::Policy"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "IAM_POLICY_NO_STATEMENTS_WITH_ADMIN_ACCESS"
+            },
+            "InputParameters": "{}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "iam-root-access-key-check",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-8tmghv",
+            "ConfigRuleId": "config-rule-8tmghv",
+            "Description": "Checks whether the root user access key is available. The rule is compliant if the user access key does not exist.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "IAM_ROOT_ACCESS_KEY_CHECK"
+            },
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "lambda-function-public-access-prohibited",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-tel6yl",
+            "ConfigRuleId": "config-rule-tel6yl",
+            "Description": "Checks whether the Lambda function policy prohibits public access.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::Lambda::Function"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "LAMBDA_FUNCTION_PUBLIC_ACCESS_PROHIBITED"
+            },
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "multi-region-cloudtrail-enabled",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-nymaxc",
+            "ConfigRuleId": "config-rule-nymaxc",
+            "Description": "Checks that there is at least one multi-region AWS CloudTrail. The rule is non-compliant if the trails do not match input parameters",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "MULTI_REGION_CLOUD_TRAIL_ENABLED"
+            },
+            "InputParameters": "{}",
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "rds-automatic-minor-version-upgrade-enabled",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-claw2s",
+            "ConfigRuleId": "config-rule-claw2s",
+            "Description": "Checks if Amazon Relational Database Service (Amazon RDS) database instances are configured for automatic minor version upgrades. The rule is NON_COMPLIANT if the value of 'autoMinorVersionUpgrade' is false.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::RDS::DBInstance"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "RDS_AUTOMATIC_MINOR_VERSION_UPGRADE_ENABLED"
+            },
+            "InputParameters": "{}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "rds-instance-public-access-check",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-d8mt2t",
+            "ConfigRuleId": "config-rule-d8mt2t",
+            "Description": "Checks if the Amazon Relational Database Service (Amazon RDS) instances are not publicly accessible. The rule is NON_COMPLIANT if the publiclyAccessible field is true in the instance configuration item.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::RDS::DBInstance"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "RDS_INSTANCE_PUBLIC_ACCESS_CHECK"
+            },
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "rds-snapshots-public-prohibited",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-zuryeh",
+            "ConfigRuleId": "config-rule-zuryeh",
+            "Description": "Checks if Amazon Relational Database Service (Amazon RDS) snapshots are public. The rule is non-compliant if any existing and new Amazon RDS snapshots are public.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::RDS::DBSnapshot",
+                    "AWS::RDS::DBClusterSnapshot"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "RDS_SNAPSHOTS_PUBLIC_PROHIBITED"
+            },
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "restricted-common-ports",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-tpbion",
+            "ConfigRuleId": "config-rule-tpbion",
+            "Description": "Checks if the security groups in use do not allow unrestricted incoming Transmission Control Protocol (TCP) traffic to the specified ports for IPv4. The rule is COMPLIANT if IP addresses for inbound TCP connections are restricted to the specified ports.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::EC2::SecurityGroup"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "RESTRICTED_INCOMING_TRAFFIC"
+            },
+            "InputParameters": "{\"blockedPort1\":\"20\",\"blockedPort2\":\"21\",\"blockedPort3\":\"3389\",\"blockedPort5\":\"4333\",\"blockedPort4\":\"3306\"}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "root-account-hardware-mfa-enabled",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-u6tys3",
+            "ConfigRuleId": "config-rule-u6tys3",
+            "Description": "Checks whether your AWS account is enabled to use multi-factor authentication (MFA) hardware device to sign in with root credentials.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "ROOT_ACCOUNT_HARDWARE_MFA_ENABLED"
+            },
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "s3-account-level-public-access-blocks",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-ypjy0c",
+            "ConfigRuleId": "config-rule-ypjy0c",
+            "Description": "Checks whether the required public access block settings are configured from account level. The rule is NON_COMPLIANT when the public access block settings are not configured from account level.",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::S3::AccountPublicAccessBlock"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "S3_ACCOUNT_LEVEL_PUBLIC_ACCESS_BLOCKS"
+            },
+            "InputParameters": "{\"IgnorePublicAcls\":\"True\",\"BlockPublicPolicy\":\"True\",\"BlockPublicAcls\":\"True\",\"RestrictPublicBuckets\":\"True\"}",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "s3-bucket-public-read-prohibited",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-dbtesv",
+            "ConfigRuleId": "config-rule-dbtesv",
+            "Description": "Checks that your Amazon S3 buckets do not allow public read access. The rule checks the Block Public Access settings, the bucket policy, and the bucket access control list (ACL).",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::S3::Bucket"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "S3_BUCKET_PUBLIC_READ_PROHIBITED"
+            },
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "s3-bucket-public-write-prohibited",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-hpub4c",
+            "ConfigRuleId": "config-rule-hpub4c",
+            "Description": "Checks that your Amazon S3 buckets do not allow public write access. The rule checks the Block Public Access settings, the bucket policy, and the bucket access control list (ACL).",
+            "Scope": {
+                "ComplianceResourceTypes": [
+                    "AWS::S3::Bucket"
+                ]
+            },
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "S3_BUCKET_PUBLIC_WRITE_PROHIBITED"
+            },
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        },
+        {
+            "ConfigRuleName": "ssm-document-not-public",
+            "ConfigRuleArn": "arn:aws:config:ap-northeast-2:************:config-rule/config-rule-0bmksw",
+            "ConfigRuleId": "config-rule-0bmksw",
+            "Description": "Checks if AWS Systems Manager documents owned by the account are public. The rule is NON_COMPLIANT if Systems Manager documents with the owner 'Self' are public.",
+            "Source": {
+                "Owner": "AWS",
+                "SourceIdentifier": "SSM_DOCUMENT_NOT_PUBLIC"
+            },
+            "MaximumExecutionFrequency": "TwentyFour_Hours",
+            "ConfigRuleState": "ACTIVE",
+            "EvaluationModes": [
+                {
+                    "Mode": "DETECTIVE"
+                }
+            ]
+        }
+    ]
+}
