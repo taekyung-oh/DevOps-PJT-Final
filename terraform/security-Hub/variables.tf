@@ -14,6 +14,6 @@ variable "SLACK_URL" {
     type = string
 }
 
-variable "subscriber_email_addresses" {
+variable "email" {
     type = string
 }

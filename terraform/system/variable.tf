@@ -1,3 +1,12 @@
+data "terraform_remote_state" "monitoring" {
+  backend = "s3"
+  config = {
+    bucket = "terraform-bighead-bucket"
+    key    = "monitoring/terraform.tfstate"
+    region = "ap-northeast-2"
+  }  
+}
+
 variable "hosting_zone_id" {
   type        = string
   default = "Z04233653QF8Y15T1OVTE"
@@ -24,7 +33,8 @@ variable "AWS_PROMETHEUS_ENDPOINT" {
 
 variable "AOT_CONFIG_CONTENT_arn" {
   type        = string
-  default = "arn:aws:ssm:ap-northeast-2:159088646233:parameter/AOT_CONFIG_CONTENT"
+  # default = "arn:aws:ssm:ap-northeast-2:159088646233:parameter/AOT_CONFIG_CONTENT"
+  default = data.terraform_remote_state.monitoring.outputs.prometheus_write_url
 }
 
 variable "aws-otel-collector_image" {
