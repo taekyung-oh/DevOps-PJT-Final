@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "bighead-project-tfstate"
+    bucket  = "terraform-bighead-bucket"
     key     = "system/terraform.tfstate"
     region  = "ap-northeast-2"
     encrypt = true
