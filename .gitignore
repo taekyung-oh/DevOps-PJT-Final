@@ -131,3 +131,11 @@ dist
 
 # Extra Folders
 /python-auto-instrumentation-sample-app
+
+# terraform
+.terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.terraform.lock.hcl
+*.auto.tfvars
