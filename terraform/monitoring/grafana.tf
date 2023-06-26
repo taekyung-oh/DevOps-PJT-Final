@@ -60,21 +60,25 @@ resource "grafana_folder" "folder" {
 resource "grafana_dashboard" "prometheus-dashboard" {
   config_json = templatefile("${path.module}/dashboard/prometheus.tftpl",
                              { data_sources_aps = grafana_data_source.prometheus.uid,
-                               data_sources_cw = grafana_data_source.cloudwatch.uid })
+                               data_sources_cw = grafana_data_source.cloudwatch.uid,
+                               cluster_arn = data.terraform_remote_state.system.outputs.ecs-cluster-arn,
+                               account_id =  data.aws_caller_identity.current.account_id })
   folder = grafana_folder.folder.id
   overwrite = true
 }
 
 resource "grafana_dashboard" "xray-dashboard" {
   config_json = templatefile("${path.module}/dashboard/xray.tftpl",
-                             { data_sources_xray = "example" })
+                             { data_sources_xray = "example",
+                               account_id =  data.aws_caller_identity.current.account_id })
   folder = grafana_folder.folder.id
   overwrite = true
 }
 
 resource "grafana_dashboard" "security-dashboard" {
   config_json = templatefile("${path.module}/dashboard/security.tftpl",
-                             { data_sources_cw = grafana_data_source.cloudwatch.uid })
+                             { data_sources_cw = grafana_data_source.cloudwatch.uid,
+                               account_id =  data.aws_caller_identity.current.account_id })
   folder = grafana_folder.folder.id
   overwrite = true
 }

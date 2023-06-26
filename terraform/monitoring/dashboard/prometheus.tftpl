@@ -89,7 +89,7 @@
             },
             "editorMode": "code",
             "exemplar": false,
-            "expr": "count(threads_active{aws_ecs_cluster_arn=\"arn:aws:ecs:ap-northeast-2:159088646233:cluster/bighead-cluster\"}) / 3",
+            "expr": "count(threads_active{aws_ecs_cluster_arn=${cluster_arn}\}) / 3",
             "instant": false,
             "legendFormat": "",
             "range": true,
@@ -142,7 +142,7 @@
             "calcs": [
               "lastNotNull"
             ],
-            "fields": "/^count\\(time_alive\\{aws_ecs_cluster_arn=\"arn:aws:ecs:ap\\-northeast\\-2:159088646233:cluster/bighead\\-cluster\"\\}\\)$/",
+            "fields": "/^count\\(time_alive\\{aws_ecs_cluster_arn=${cluster_arn}\\}\\)$/",
             "values": false
           },
           "textMode": "auto"
@@ -155,7 +155,7 @@
               "uid": "${data_sources_aps}"
             },
             "editorMode": "code",
-            "expr": "count(time_alive{aws_ecs_cluster_arn=\"arn:aws:ecs:ap-northeast-2:159088646233:cluster/bighead-cluster\"})",
+            "expr": "count(time_alive{aws_ecs_cluster_arn=${cluster_arn}})",
             "legendFormat": "__auto",
             "range": true,
             "refId": "A"
@@ -250,7 +250,7 @@
             "label": "",
             "logGroups": [
               {
-                "accountId": "159088646233",
+                "accountId": ${account_id},
                 "arn": "arn:aws:logs:ap-northeast-2:159088646233:log-group:/aws/events/Securityhub:*",
                 "name": "/aws/events/Securityhub"
               }
@@ -325,7 +325,7 @@
               "uid": "${data_sources_aps}"
             },
             "editorMode": "code",
-            "expr": "hour(time_alive{aws_ecs_cluster_arn=\"arn:aws:ecs:ap-northeast-2:159088646233:cluster/bighead-cluster\"})",
+            "expr": "hour(time_alive{aws_ecs_cluster_arn=\${cluster_arn}})",
             "legendFormat": "__auto",
             "range": true,
             "refId": "A"
@@ -399,7 +399,7 @@
             "label": "",
             "logGroups": [
               {
-                "accountId": "159088646233",
+                "accountId": ${account_id},
                 "arn": "arn:aws:logs:ap-northeast-2:159088646233:log-group:/aws/events/Securityhub:*",
                 "name": "/aws/events/Securityhub"
               }
@@ -478,7 +478,7 @@
             "label": "",
             "logGroups": [
               {
-                "accountId": "159088646233",
+                "accountId": ${account_id},
                 "arn": "arn:aws:logs:ap-northeast-2:159088646233:log-group:/aws/events/Securityhub:*",
                 "name": "/aws/events/Securityhub"
               }
@@ -557,7 +557,7 @@
             "label": "",
             "logGroups": [
               {
-                "accountId": "159088646233",
+                "accountId": ${account_id},
                 "arn": "arn:aws:logs:ap-northeast-2:159088646233:log-group:/aws/events/Securityhub:*",
                 "name": "/aws/events/Securityhub"
               }
