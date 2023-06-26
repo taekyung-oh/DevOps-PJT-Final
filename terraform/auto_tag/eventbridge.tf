@@ -1,10 +1,10 @@
 # eventbridge.tf
 
 # # # # # EVNETBRIDGE RULE # # # # #
-# 이벤트브릿지 룰 생성 후 cloudwatch와 연결
+# 이벤트브릿지 룰 생성 후 Lambda와 연결(EC2)
 resource "aws_cloudwatch_event_rule" "auto_taging_ec2_to_lambda_event_rule" {
   name        = "auto_taging_ec2_to_lambda_event_rule"
-  description = "config에서 ssm automation을 통해 자동화가 수행된 이후의 로그 기록을 위한 eventbridge 규칙"
+  description = "자동 태그 EC2 생성 시 발생"
 
   event_pattern = jsonencode({
     source = [
@@ -27,9 +27,10 @@ resource "aws_cloudwatch_event_target" "auto_taging_ec2_to_lambda_event_rule_tar
 }
 
 
+# 이벤트브릿지 룰 생성 후 Lambda와 연결(S3)
 resource "aws_cloudwatch_event_rule" "auto_taging_s3_to_lambda_event_rule" {
   name        = "auto_taging_s3_to_lambda_event_rule"
-  description = "config에서 ssm automation을 통해 자동화가 수행된 이후의 로그 기록을 위한 eventbridge 규칙"
+  description = "자동 태그 S3 생성 시 발생"
 
   event_pattern = jsonencode({
     source = [
