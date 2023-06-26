@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket  = "bighead-project-tfstate"
-    key     = "security-hub/terraform.tfstate"
+    key     = "security-config/terraform.tfstate"
     region  = "ap-northeast-2"
     encrypt = true
   }
