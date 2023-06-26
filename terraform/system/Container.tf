@@ -205,3 +205,7 @@ resource "aws_ecs_service" "course" {
 output "ecs-container-id" {
     value = aws_ecs_service.content
 }
+
+output "ecs-cluster-arn" {
+  value = aws_ecs_cluster.tf-bighead-cluster.arn
+}
