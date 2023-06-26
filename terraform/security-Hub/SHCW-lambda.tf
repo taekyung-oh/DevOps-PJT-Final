@@ -104,7 +104,7 @@ resource "aws_lambda_function" "SlackEmail_lambda" {
 resource "aws_lambda_permission" "logging" {
     action        = "lambda:InvokeFunction"
     function_name = aws_lambda_function.SlackEmail_lambda.function_name
-    principal     = "logs.data.aws_caller_identity.current.account_id.amazonaws.com"
+    principal     = "logs.${data.aws_region.current.name}.amazonaws.com"
     source_arn    = "${aws_cloudwatch_log_group.securityhub_logs.arn}:*"
 }
 
