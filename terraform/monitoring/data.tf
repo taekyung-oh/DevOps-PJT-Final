@@ -1,7 +1,7 @@
 data "terraform_remote_state" "system" {
   backend = "s3"
   config = {
-    bucket = "bighead-project-tfstate"
+    bucket = "terraform-bighead-bucket"
     key    = "system/terraform.tfstate"
     region = "ap-northeast-2"
   }  
