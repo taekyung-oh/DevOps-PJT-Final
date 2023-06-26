@@ -2,18 +2,11 @@
 resource "aws_budgets_budget" "FinalProject_team9" {
   name              = "FinalProject_team9_budget"
   budget_type       = "COST"
-  limit_amount      = "0.3" #할당 요금
+  limit_amount      = "130" #할당 요금
   limit_unit        = "USD"
   time_period_end   = "2023-06-30_00:00" #기간 종료
-  time_period_start = "2023-06-01_00:00" #기간 시작
+  time_period_start = "2023-06-17_00:00" #기간 시작
   time_unit         = "MONTHLY" #월별
-
-  cost_filter {
-    name = "Service"
-    values = [
-      "Amazon Elastic Compute Cloud - Compute",
-    ]
-  }
 
   notification {
     comparison_operator        = "GREATER_THAN"

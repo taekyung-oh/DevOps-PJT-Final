@@ -62,7 +62,8 @@ def lambda_handler(event, context):
         compressed_payload = base64.b64decode(cw_data)
         uncompressed_payload = gzip.decompress(compressed_payload).decode('utf-8')
         payload = json.loads(uncompressed_payload)
-    
+        #print(f"[payload] {payload}")
+
         log_events = payload['logEvents']
         for log_event in log_events:
             #print(f'[LogEvent]: {log_event}')    
@@ -78,7 +79,8 @@ def lambda_handler(event, context):
                 findings = detail['findings']
             if findings is not None:
                 #print(findings)
-                
+                message = ">*⚠️ SECURITY NOTIFICATION*\n>\n>\n"
+
                 for finding in findings:
                     # 보고 구성 항목
                     ## 주요 항목
@@ -87,12 +89,12 @@ def lambda_handler(event, context):
                     severity_label = finding['Severity']['Label']
                     severity_score = finding['Severity']['Normalized']
 
-                    targets = ""
+                    target_info = ""
                     for resource in finding['Resources']:
                         # 리소스 마스킹처리
                         pat = re.compile("(\d{12})")
                         target = pat.sub("************", resource['Id'])
-                        targets += f"{target} "
+                        target_info += f">리소스 ID: {target}\n>리소스 유형: {resource['Type']}\n"
 
                     ## 세부 항목
                     # 시간 한국 시간으로 변경
@@ -101,16 +103,33 @@ def lambda_handler(event, context):
                     time = dt.astimezone(KST)
 
                     productName = f"{finding['CompanyName']} {finding['ProductName']}"
-                    compliance_status = finding['Compliance']['Status']
                     record_state = finding['RecordState']
                     workflow_status = finding['Workflow']['Status']
-                    description = finding['Description']
+
+                    description = finding['Description'].replace("\n", "")
 
                     # slack 메시지 생성        
-                    message = f">*[🚨SECURITY NOTIFICATION🚨]*\n>취약점명: `{title}`\n>심각도 수준: `{severity_label}({severity_score}점)`\n>발생 리소스: `{target}`\n>취약점 유형: `{types}`\n>\n>현지 발생 시각: {time} \n> 탐지 서비스: {productName}\n>준수 상태: {compliance_status}\n>활성화 상태: {record_state}\n>생성 상태: {workflow_status}\n>상세 내용: {description}"
+                    message += f">*📌 취약점 정보*\n>탐지 서비스: *{productName}*\n>현지 발생 시각: {time} \n>심각도 수준: `{severity_label}({severity_score}점)`\n>취약점 유형: `{types}`\n>취약점명: `{title}`\n>\n>\n>*📌 취약점 발생 리소스*\n{target_info}>\n>\n>*📌 취약점 현황*\n>활성화 상태: {record_state}\n>생성 상태: {workflow_status}\n>설명: {description}\n"
+
+                    if 'Compliance' in finding:
+                        message += f">준수 상태: {finding['Compliance']['Status']}\n"
+                    
+                    if 'Remediation' in finding:
+                        if 'Url' in finding['Remediation']:
+                            message += f">참고 URL: {finding['Remediation']['Url']}\n"
+
+                    # inspector일 경우 디테일 내용 추가
+                    if "Inspector" in productName:
+                        vulnerability_info = ">\n>\n>*📌 취약점 상세 정보*\n"
+                        for vulnerability in finding['Vulnerabilities']:
+                            vulnerability_info += f">CVE ID: {vulnerability['Id']}\n>해결 가능 여부: {vulnerability['FixAvailable']}\n>익스플로잇 가능 여부: {vulnerability['ExploitAvailable']}\n>취약점 상세 내용 URL: {vulnerability['Vendor']['Url']}\n"
+
+                            for package_info in vulnerability['VulnerablePackages']:
+                                vulnerability_info += f">해결 방법: `{package_info['Remediation']}`\n"
+                        message += vulnerability_info
 
                     #print(message)        
-                    post_slack(message)
-                    send_email(message)
+                post_slack(message)
+                send_email(message)
     else:
         print("'awslogs' key not found in event data")

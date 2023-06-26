@@ -6,12 +6,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket  = "bighead-project-tfstate"
-    key     = "security-hub/terraform.tfstate"
-    region  = "ap-northeast-2"
-    encrypt = true
-  }
+  # backend "s3" {
+  #   bucket  = "bighead-project-tfstate"
+  #   key     = "security-hub/terraform.tfstate"
+  #   region  = "ap-northeast-2"
+  #   encrypt = true
+  # }
 
 }
 
