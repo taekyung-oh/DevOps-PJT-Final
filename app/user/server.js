@@ -72,7 +72,7 @@ async function handleRequest(req, res) {
         };
     }
     catch (err) {
-        logger.error(err);
+        logger.error(err.stack);
     }   
 }
 
@@ -95,7 +95,7 @@ async function getUsers (req, res) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(traceid)
     } catch(err) {
-        logger.error(err);
+        logger.error(err.stack);
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end()
     }
