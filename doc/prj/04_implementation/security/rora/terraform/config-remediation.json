@@ -1,0 +1,196 @@
+
+[{
+    "ConfigRuleName": "guardduty-enabled-centralized",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "AWSConfigRemediation-CreateGuardDutyDetector",
+    "TargetVersion": "2",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/guardduty-enabled-centralized/05130fdc-8c9e-48e8-8635-de839f497408"
+},
+{
+    "ConfigRuleName": "s3-bucket-public-write-prohibited",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "AWS-DisableS3BucketPublicReadWrite",
+    "TargetVersion": "1",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        },
+        "S3BucketName": {
+            "ResourceValue": {
+                "Value": "RESOURCE_ID"
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/s3-bucket-public-write-prohibited/9f24a4c9-5314-4d3f-9118-c33b3d9aecc6"
+},
+
+{
+    "ConfigRuleName": "s3-bucket-public-read-prohibited",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "AWS-DisableS3BucketPublicReadWrite",
+    "TargetVersion": "1",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        },
+        "S3BucketName": {
+            "ResourceValue": {
+                "Value": "RESOURCE_ID"
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/s3-bucket-public-read-prohibited/7ebaeb8b-7c96-4de6-aa04-d6df83bec1a9"
+},
+{
+    "ConfigRuleName": "rds-automatic-minor-version-upgrade-enabled",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "AWSConfigRemediation-EnableMinorVersionUpgradeOnRDSDBInstance",
+    "TargetVersion": "2",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        },
+        "DbiResourceId": {
+            "ResourceValue": {
+                "Value": "RESOURCE_ID"
+            }
+        },
+        "InlinePolicyNames": {
+            "StaticValue": {
+                "Values": []
+            }
+        },
+        "ResourceId": {
+            "StaticValue": {
+                "Values": []
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/rds-automatic-minor-version-upgrade-enabled/9b2ccacc-7b50-4641-9ed2-3bf3c5e18dbf"
+},
+{
+    "ConfigRuleName": "rds-instance-public-access-check",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "AWSConfigRemediation-DisablePublicAccessToRDSInstance",
+    "TargetVersion": "2",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        },
+        "DbiResourceId": {
+            "ResourceValue": {
+                "Value": "RESOURCE_ID"
+            }
+        },
+        "GroupId": {
+            "StaticValue": {
+                "Values": []
+            }
+        },
+        "IpAddressToBlock": {
+            "StaticValue": {
+                "Values": []
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/rds-instance-public-access-check/3ab6352b-4f73-4c6e-b167-f313756ede5d"
+},
+{
+    "ConfigRuleName": "iam-policy-no-statements-with-admin-access",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "AWSConfigRemediation-ReplaceIAMInlinePolicy",
+    "TargetVersion": "1",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        },
+        "InlinePolicyNames": {
+            "StaticValue": {
+                "Values": []
+            }
+        },
+        "ResourceId": {
+            "ResourceValue": {
+                "Value": "RESOURCE_ID"
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/iam-policy-no-statements-with-admin-access/ea6e1659-6241-4bad-b20e-5a0f7b0b72ac"
+},
+{
+    "ConfigRuleName": "restricted-common-ports",
+    "TargetType": "SSM_DOCUMENT",
+    "TargetId": "Custom-DisablePublicAccessForSecurityGroup",
+    "TargetVersion": "9",
+    "Parameters": {
+        "AutomationAssumeRole": {
+            "StaticValue": {
+                "Values": [
+                    "arn:aws:iam::************:role/AmazonSSMAutomationRole"
+                ]
+            }
+        },
+        "GroupId": {
+            "ResourceValue": {
+                "Value": "RESOURCE_ID"
+            }
+        },
+        "IpAddressToBlock": {
+            "StaticValue": {
+                "Values": []
+            }
+        }
+    },
+    "Automatic": true,
+    "MaximumAutomaticAttempts": 1,
+    "RetryAttemptSeconds": 300,
+    "Arn": "arn:aws:config:ap-northeast-2:************:remediation-configuration/restricted-common-ports/6c7d5b10-43b4-42c6-a2eb-d1270745c4e3"
+}]
+

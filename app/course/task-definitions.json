@@ -1,0 +1,109 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:159088646233:task-definition/bighead-course-was:5",
+    "containerDefinitions": [
+        {
+            "name": "course-was",
+            "image": "159088646233.dkr.ecr.ap-northeast-2.amazonaws.com/course:5fa8b2d581fa5d2d1307f8cb53ab78beac5a10bb",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "course-was-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/bighead-course-was",
+                    "awslogs-region": "ap-northeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        },
+        {
+            "name": "aws-otel-collector",
+            "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.30.0",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,            
+            "environment": [
+                {
+                    "name": "AWS_PROMETHEUS_ENDPOINT",
+                    "value": "https://aps-workspaces.ap-northeast-2.amazonaws.com/workspaces/ws-e32a03c2-993b-4cce-a397-1e400b35752c/api/v1/remote_write"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "AOT_CONFIG_CONTENT",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-2:159088646233:parameter/AOT_CONFIG_CONTENT"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+                    "awslogs-region": "ap-northeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "family": "bighead-course-was",
+    "taskRoleArn": "arn:aws:iam::159088646233:role/ecsTaskRole",
+    "executionRoleArn": "arn:aws:iam::159088646233:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 5,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-06-20T05:16:09.018Z",
+    "registeredBy": "arn:aws:iam::159088646233:user/dkrldkdwk0",
+    "tags": []
+}

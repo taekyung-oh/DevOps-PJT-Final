@@ -1,0 +1,59 @@
+[
+    {
+        "name": "${container_name}",
+        "image": "${image_url}",
+        
+        "portMappings": [
+            {
+                "name": "${container_name}-8080-tcp",
+                "containerPort": 8080,
+                "hostPort": 8080,
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
+        "essential": true,
+        "environment": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/bighead-${container_name}",
+                "awslogs-region": "${region}",
+                "awslogs-stream-prefix": "ecs"
+            }
+        }
+    },
+    {
+        "name": "aws-otel-collector",
+        "image": "${aws-otel-collector_image}",
+        
+        "portMappings": [],
+        "essential": true,
+        "environment": [
+            {
+                "name": "AWS_PROMETHEUS_ENDPOINT",
+                "value": "${AWS_PROMETHEUS_ENDPOINT}"
+            }
+        ],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "secrets": [
+            {
+                "name": "AOT_CONFIG_CONTENT",
+                "valueFrom": "${AOT_CONFIG_CONTENT}"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+                "awslogs-region": "${region}",
+                "awslogs-stream-prefix": "ecs"
+            }
+        }
+    }   
+]
