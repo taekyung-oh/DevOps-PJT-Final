@@ -148,7 +148,7 @@ async function instrumentRequest(spanName, _callback) {
 
             return traceid;
         } catch(err) {
-            span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
+            span.setStatus({code: SpanStatusCode.ERROR, message: err.stack,});
                 
             throw err
         } finally {
