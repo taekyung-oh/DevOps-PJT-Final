@@ -33,6 +33,9 @@ const SpanStatusCode = api.SpanStatusCode
 // request metrics 
 const { updateTotalBytesSent, updateLatencyTime, updateApiRequestsMetric } = require('./request-metrics');
 
+//logger
+const logger = require('./logger')
+
 // start server for request metrics and traces
 function startServer() {
     const server = http.createServer(handleRequest);
@@ -40,7 +43,7 @@ function startServer() {
         if (err) {
             throw err;
         }
-        console.log(`Node HTTP listening on ${cfg.Host}:${cfg.Port}`);
+        logger.info(`Node HTTP listening on ${cfg.Host}:${cfg.Port}`);
     });
 }
 
@@ -61,7 +64,7 @@ async function handleRequest(req, res) {
         };
     } 
     catch (err) {
-        console.log(err);
+        logger.error(err.stack);
     }   
 }
 
@@ -77,7 +80,7 @@ async function getCourses (req, res) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(traceid)
     } catch(err) {
-        console.log(err)
+        logger.error(err.stack);
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end()
     }
@@ -94,7 +97,7 @@ async function getScheduled (req, res) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(traceid)
     } catch(err) {
-        console.log(err)
+        logger.error(err.stack);
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end()
     }
@@ -122,7 +125,8 @@ async function httpCall(url) {
     try {
         const response = await fetch(url);
 
-        console.log(`made a request to ${url}`);
+        logger.info(`made a request to ${url}`);
+        
         if (!response.ok) {
             throw new Error(`Error! status: ${response.status}`);
         }
@@ -148,7 +152,7 @@ async function instrumentRequest(spanName, _callback) {
 
             return traceid;
         } catch(err) {
-            span.setStatus({code: SpanStatusCode.ERROR, message: err.message,});
+            span.setStatus({code: SpanStatusCode.ERROR, message: err.stack,});
                 
             throw err
         } finally {

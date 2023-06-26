@@ -1,7 +1,7 @@
 terraform {
   # Location of monitoring state file
   backend "s3" {
-    bucket  = "bighead-project-tfstate"
+    bucket  = "terraform-bighead-bucket"
     key     = "monitoring/terraform.tfstate"
     region  = "ap-northeast-2"
     encrypt = true
