@@ -1,7 +1,5 @@
 # 자산 관리 시스템 
 ## Architecture
-![발표 자료](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/126463472/98560fd8-849d-4276-ae79-e6b7f5ffe78a)
-
 ![Final_project drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/00afe77e-d1a1-4542-9b5b-8b5840b82786)
 
 
