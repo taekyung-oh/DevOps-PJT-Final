@@ -10,7 +10,6 @@
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/6a69159d-9a06-40c8-86d6-7ebf2994497b)
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/f8a60485-d88f-4c66-bb06-9d5607fe1c39)
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/7bc96214-2add-4752-a8e8-eb33d9adb704)
-![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/11463392-2bf7-46c6-b700-27b673e0c216)
 
 
 [![Amazon S3](https://img.shields.io/badge/Amazon%20S3-Cloud%20Storage-orange?style=flat-square&logo=amazon-s3)](https://aws.amazon.com/s3/)
