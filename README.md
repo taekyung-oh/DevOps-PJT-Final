@@ -2,7 +2,7 @@
 ## Architecture
 ![Final_project drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/00afe77e-d1a1-4542-9b5b-8b5840b82786)
 
-
+#FF9900
 
 ## User Story
 ✅ 자산 관리 시스템을 도입하게 된다면 이 시스템을 어떻게 운영 및 보안 계획을 수립할것인가
