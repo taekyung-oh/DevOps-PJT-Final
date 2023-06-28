@@ -55,6 +55,7 @@ async function handleRequest(req, res) {
         },        
         '/course/courses': getCourses,
         '/course/scheduled': getScheduled,
+        '/course/participants' : getParticipants
     }
     try {
         const handler = routeMapper[req.url]
@@ -92,6 +93,21 @@ async function getScheduled (req, res) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end()
             throw new Error
+        });
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(traceid)
+    } catch(err) {
+        logger.error(err.stack);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end()
+    }
+}
+
+async function getParticipants (req, res) {
+    try {
+        const traceid = await instrumentRequest('getParticipants', async () => {
+            await httpCall('https://api.bigheadck.click/user/users')        
         });
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
