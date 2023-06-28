@@ -3,7 +3,6 @@
 ![Final_project drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/00afe77e-d1a1-4542-9b5b-8b5840b82786)
 
 ## Environment
-<img src="https://img.shields.io/badge/GitHub-#181717?style=for-the-badge&logo=GitHub&logoColor=white%22%3E
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/1179c979-1935-41be-99eb-b0860aa31215)
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/5dc2808c-e819-46ab-bc17-f02f61cc0e76)
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/3b2bf075-984f-4245-8c6a-6717e9f37009)
