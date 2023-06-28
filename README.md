@@ -2,6 +2,7 @@
 ## Architecture
 ![Final_project drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/00afe77e-d1a1-4542-9b5b-8b5840b82786)
 
+## Environment
 [![Amazon S3](https://img.shields.io/badge/Amazon%20S3-Cloud%20Storage-orange?style=flat-square&logo=amazon-s3)](https://aws.amazon.com/s3/)
 
 
