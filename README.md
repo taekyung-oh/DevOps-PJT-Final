@@ -27,7 +27,8 @@
 
 
 
-## User Story
+## Project Description
+### User Story
 ✅ 자산 관리 시스템을 도입하게 된다면 이 시스템을 어떻게 운영 및 보안 계획을 수립할것인가
 많은 기업들이 각종 시스템과 IT 자산을 효율적으로 관리할 필요성이 커지고 있으며 이를 효율적으로 관리하기 위한 최적의 관리방법으로 EAM(Enterprise Asset Management), ITAM(IT Asset Management) 등 여러가지 관리 시스템을 운용을 하고 있습니다.
 
@@ -53,7 +54,7 @@
 4. 자동화
    - 단순 반복적인 작업은 자동화 할 수 있어야 하며 인프라 전반의 CI/CD 파이프라인이 구성되어야 합니다.
 
-## Product Backlog
+## How-To 가이드
 ### 📍 CI/CD 파이프라인
 ECS에 배포되어 있는 WEB/WAS 컨테이너 소스를 깃허브를 통해 관리 및 CI/CD를 수행하기 위해 AWS CodePipeline, CodeBuild, CodeDeploy 서비스를 이용해야 합니다.
 정보 자산 시스템 데모 시연을 위해 ALB, ECR, ECS fargate, RDS, S3를 사용합니다.
