@@ -3,6 +3,16 @@
 ![Final_project drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/00afe77e-d1a1-4542-9b5b-8b5840b82786)
 
 ## Environment
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/1179c979-1935-41be-99eb-b0860aa31215)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/5dc2808c-e819-46ab-bc17-f02f61cc0e76)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/3b2bf075-984f-4245-8c6a-6717e9f37009)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/727fa447-6ebd-4997-afd8-d09fb131a1f0)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/6a69159d-9a06-40c8-86d6-7ebf2994497b)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/f8a60485-d88f-4c66-bb06-9d5607fe1c39)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/7bc96214-2add-4752-a8e8-eb33d9adb704)
+![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/11463392-2bf7-46c6-b700-27b673e0c216)
+
+
 [![Amazon S3](https://img.shields.io/badge/Amazon%20S3-Cloud%20Storage-orange?style=flat-square&logo=amazon-s3)](https://aws.amazon.com/s3/)
 [![Amazon RDS](https://img.shields.io/badge/Amazon%20RDS-Managed%20Database-orange?style=flat-square&logo=amazon-rds)](https://aws.amazon.com/rds/)
 [![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-Serverless-orange?style=flat-square&logo=amazon-lambda)](https://aws.amazon.com/lambda/)
