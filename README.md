@@ -4,6 +4,8 @@
 
 ## Environment
 [![Amazon S3](https://img.shields.io/badge/Amazon%20S3-Cloud%20Storage-orange?style=flat-square&logo=amazon-s3)](https://aws.amazon.com/s3/)
+[![Amazon RDS](https://img.shields.io/badge/Amazon%20RDS-Managed%20Database-orange?style=flat-square&logo=amazon-rds)](https://aws.amazon.com/rds/)
+[![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-Serverless-orange?style=flat-square&logo=amazon-lambda)](https://aws.amazon.com/lambda/)
 
 
 ## User Story
