@@ -6,6 +6,21 @@
 [![Amazon S3](https://img.shields.io/badge/Amazon%20S3-Cloud%20Storage-orange?style=flat-square&logo=amazon-s3)](https://aws.amazon.com/s3/)
 [![Amazon RDS](https://img.shields.io/badge/Amazon%20RDS-Managed%20Database-orange?style=flat-square&logo=amazon-rds)](https://aws.amazon.com/rds/)
 [![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-Serverless-orange?style=flat-square&logo=amazon-lambda)](https://aws.amazon.com/lambda/)
+[![AWS Fargate](https://img.shields.io/badge/AWS%20Fargate-Serverless%20Containers-orange?style=flat-square&logo=aws-fargate)](https://aws.amazon.com/fargate/)
+[![Amazon ECS](https://img.shields.io/badge/Amazon%20ECS-Container%20Service-orange?style=flat-square&logo=amazon-ecs)](https://aws.amazon.com/ecs/)
+[![AWS CloudWatch](https://img.shields.io/badge/AWS%20CloudWatch-Monitoring%20and%20Observability-orange?style=flat-square&logo=amazon-cloudwatch)](https://aws.amazon.com/cloudwatch/)
+[![AWS WAF](https://img.shields.io/badge/AWS%20WAF-Web%20Application%20Firewall-orange?style=flat-square&logo=amazon-waf)](https://aws.amazon.com/waf/)
+[![AWS Security Hub](https://img.shields.io/badge/AWS%20Security%20Hub-Security%20Monitoring-orange?style=flat-square&logo=amazon-security-hub)](https://aws.amazon.com/security-hub/)
+[![AWS Inspector](https://img.shields.io/badge/AWS%20Inspector-Vulnerability%20Assessment-orange?style=flat-square&logo=amazon-inspector)](https://aws.amazon.com/inspector/)
+[![AWS X-Ray](https://img.shields.io/badge/AWS%20X--Ray-Tracing%20%26%20Analytics-orange?style=flat-square&logo=amazon-xray)](https://aws.amazon.com/xray/)
+[![AWS Config](https://img.shields.io/badge/AWS%20Config-Resource%20Compliance%20%26%20Audit-orange?style=flat-square&logo=amazon-config)](https://aws.amazon.com/config/)
+[![AWS Systems Manager](https://img.shields.io/badge/AWS%20Systems%20Manager-Operational%20Data%20Collection-orange?style=flat-square&logo=amazon-systems-manager)](https://aws.amazon.com/systems-manager/)
+[![AWS CloudTrail](https://img.shields.io/badge/AWS%20CloudTrail-Audit%20%26%20Compliance-orange?style=flat-square&logo=amazon-cloudtrail)](https://aws.amazon.com/cloudtrail/)
+[![Amazon Route 53](https://img.shields.io/badge/Amazon%20Route%2053-DNS%20Management-orange?style=flat-square&logo=amazon-route53)](https://aws.amazon.com/route53/)
+[![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-Observability-yellow?style=flat-square&logo=open-telemetry)](https://opentelemetry.io)
+[![Prometheus](https://img.shields.io/badge/Prometheus-Monitoring-yellow?style=flat-square&logo=prometheus)](https://prometheus.io)
+[![AWS Resource Groups](https://img.shields.io/badge/AWS%20Resource%20Groups-Resource%20Organization-orange?style=flat-square&logo=amazon-aws)](https://aws.amazon.com/resource-groups/)
+
 
 
 ## User Story
