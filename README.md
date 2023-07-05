@@ -2,7 +2,7 @@
 ## Architecture
 ![Final_project drawio](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/86557754/00afe77e-d1a1-4542-9b5b-8b5840b82786)
 
-## Observability, Monitoring
+## Observability
 ![image](https://github.com/cs-devops-bootcamp/devops-04-Final-Team9/assets/126463472/7498e4ee-ef46-4c3c-8321-5a044d3caaea)
 
 ## Environment
