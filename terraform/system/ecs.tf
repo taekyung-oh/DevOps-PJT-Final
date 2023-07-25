@@ -81,8 +81,8 @@ resource "aws_ecs_task_definition" "content" {
   container_definitions = templatefile("${path.module}/task-definitions.json", {
     image_url        = "${aws_ecr_repository.content.repository_url}:1.0"
     container_name   = "content-was"
-    AWS_PROMETHEUS_ENDPOINT = var.AWS_PROMETHEUS_ENDPOINT
-    AOT_CONFIG_CONTENT = var.AOT_CONFIG_CONTENT_arn
+    AWS_PROMETHEUS_ENDPOINT = var.aws_prometheus_endpoint
+    AOT_CONFIG_CONTENT = aws_ssm_parameter.adot_config_content.arn
     region = "ap-northeast-2"
     aws-otel-collector_image = var.aws-otel-collector_image
   })
@@ -103,8 +103,8 @@ resource "aws_ecs_task_definition" "user" {
   container_definitions = templatefile("${path.module}/task-definitions.json", {
     image_url        = "${aws_ecr_repository.user.repository_url}:1.0"
     container_name   = "user-was"
-    AWS_PROMETHEUS_ENDPOINT = var.AWS_PROMETHEUS_ENDPOINT
-    AOT_CONFIG_CONTENT = var.AOT_CONFIG_CONTENT_arn
+    AWS_PROMETHEUS_ENDPOINT = var.aws_prometheus_endpoint
+    AOT_CONFIG_CONTENT = aws_ssm_parameter.adot_config_content.arn
     region = "ap-northeast-2"
     aws-otel-collector_image = var.aws-otel-collector_image
   })
@@ -125,8 +125,8 @@ resource "aws_ecs_task_definition" "course" {
   container_definitions = templatefile("${path.module}/task-definitions.json", {
     image_url        = "${aws_ecr_repository.course.repository_url}:1.0"
     container_name   = "course-was"
-    AWS_PROMETHEUS_ENDPOINT = var.AWS_PROMETHEUS_ENDPOINT
-    AOT_CONFIG_CONTENT = var.AOT_CONFIG_CONTENT_arn
+    AWS_PROMETHEUS_ENDPOINT = var.aws_prometheus_endpoint
+    AOT_CONFIG_CONTENT = aws_ssm_parameter.adot_config_content.arn
     region = "ap-northeast-2"
     aws-otel-collector_image = var.aws-otel-collector_image
   })

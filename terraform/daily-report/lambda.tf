@@ -96,10 +96,10 @@ resource "aws_lambda_function" "DailyReportToLambda" {
 
   environment {
     variables = {
-      RECIPIENT_EMAIL   = "kwm7502@gmail.com"
-      RECIPIENT_EMAILS  = "bighead@gyuroot.com"
-      SENDER_EMAIL  = "bighead@gyuroot.com"
-      SLACK_URL  = "https://hooks.slack.com/services/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"
+        RECIPIENT_EMAIL     = var.recipient_email
+        RECIPIENT_EMAILS    = var.recipient_emails
+        SENDER_EMAIL        = var.sender_email
+        SLACK_URL           = var.slack_url
     }
   }
 

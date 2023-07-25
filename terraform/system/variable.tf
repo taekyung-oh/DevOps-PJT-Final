@@ -26,14 +26,8 @@ variable "execution_role_arn" {
   default = "arn:aws:iam::159088646233:role/ecsTaskExecutionRole"
 }
 
-variable "AWS_PROMETHEUS_ENDPOINT" {
+variable "aws_prometheus_endpoint" {
   type        = string
-  default = "https://aps-workspaces.ap-northeast-2.amazonaws.com/workspaces/ws-e32a03c2-993b-4cce-a397-1e400b35752c/api/v1/remote_write"
-}
-
-variable "AOT_CONFIG_CONTENT_arn" {
-  type        = string
-  # default = "arn:aws:ssm:ap-northeast-2:159088646233:parameter/AOT_CONFIG_CONTENT"
   default = data.terraform_remote_state.monitoring.outputs.prometheus_write_url
 }
 

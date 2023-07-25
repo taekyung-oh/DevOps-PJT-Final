@@ -1,4 +1,3 @@
-
 resource "aws_ssm_parameter" "grafana_api" {
   name        = "/grafana/api/key"
   type        = "SecureString"

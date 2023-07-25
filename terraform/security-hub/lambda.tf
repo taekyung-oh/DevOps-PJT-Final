@@ -92,10 +92,10 @@ resource "aws_lambda_function" "SlackEmail_lambda" {
 
     environment {
         variables = {
-            RECIPIENT_EMAIL     = var.RECIPIENT_EMAIL
-            RECIPIENT_EMAILS    = var.RECIPIENT_EMAILS
-            SENDER_EMAIL        = var.SENDER_EMAIL
-            SLACK_URL           = var.SLACK_URL
+            RECIPIENT_EMAIL     = var.recipient_email
+            RECIPIENT_EMAILS    = var.recipient_emails
+            SENDER_EMAIL        = var.sender_email
+            SLACK_URL           = var.slack_url
         }
     }
 }

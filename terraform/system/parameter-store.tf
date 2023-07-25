@@ -1,5 +1,5 @@
-resource "aws_ssm_parameter" "secret" {
-  name        = "bighead-AOT_CONFIG_CONTENT"
+resource "aws_ssm_parameter" "adot_config_content" {
+  name        = "bighead-adot_config_content"
   type        = "String"
   value       = <<PARAMETER
 extensions:
@@ -12,22 +12,18 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
   awsecscontainermetrics:
 
 processors:
   batch/traces:
-    timeout: 1s
+    timeout: 30s
     send_batch_size: 50
   batch/metrics:
     timeout: 60s
   resourcedetection:
     detectors:
-      - env
-      - system
-      - ecs
-      - ec2
+      - env      
+      - ecs      
   filter:
     metrics:
       include:

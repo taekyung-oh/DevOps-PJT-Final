@@ -1,16 +1,16 @@
-variable "RECIPIENT_EMAIL" {
+variable "recipient_email" {
     type = string
 }
 
-variable "RECIPIENT_EMAILS" {
+variable "recipient_emails" {
     type = string
 }
 
-variable "SENDER_EMAIL" {
+variable "sender_email" {
     type = string
 }
 
-variable "SLACK_URL" {
+variable "slack_url" {
     type = string
 }
 

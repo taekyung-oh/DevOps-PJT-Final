@@ -1,4 +1,4 @@
-variable "SUBSCRIBER_EMAIL_ADDRESSES" {
+variable "subscriber_email_addresses" {
   type    = set(string)
   default = []
 }
