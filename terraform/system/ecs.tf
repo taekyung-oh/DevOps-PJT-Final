@@ -66,8 +66,7 @@ resource "null_resource" "course-ECR-push" {
 
 
 resource "aws_ecs_task_definition" "content" {
-  family = "tf-bighead-content-was"
-  count = 2
+  family = "tf-bighead-content-was"  
   cpu = 512
   memory = 1024
   network_mode = "awsvpc"
@@ -89,8 +88,7 @@ resource "aws_ecs_task_definition" "content" {
 }
 
 resource "aws_ecs_task_definition" "user" {
-  family = "tf-bighead-user-was"
-  count = 2
+  family = "tf-bighead-user-was"  
   cpu = 512
   memory = 1024
   network_mode = "awsvpc"
@@ -111,8 +109,7 @@ resource "aws_ecs_task_definition" "user" {
 }
 
 resource "aws_ecs_task_definition" "course" {
-  family = "tf-bighead-course-was"
-  count = 2
+  family = "tf-bighead-course-was"  
   cpu = 512
   memory = 1024
   network_mode = "awsvpc"
@@ -144,7 +141,7 @@ resource "aws_ecs_cluster" "tf-bighead-cluster" {
 resource "aws_ecs_service" "content" {
   name            = "content-service"
   cluster         = aws_ecs_cluster.tf-bighead-cluster.id
-  task_definition = aws_ecs_task_definition.content[0].arn
+  task_definition = aws_ecs_task_definition.content.arn
   desired_count   = 1
   load_balancer {
     target_group_arn = aws_lb_target_group.content-tg.arn
@@ -165,7 +162,7 @@ resource "aws_ecs_service" "content" {
 resource "aws_ecs_service" "user" {
   name            = "user-service"
   cluster         = aws_ecs_cluster.tf-bighead-cluster.id
-  task_definition = aws_ecs_task_definition.user[0].arn
+  task_definition = aws_ecs_task_definition.user.arn
   desired_count   = 1
   load_balancer {
     target_group_arn = aws_lb_target_group.user-tg.arn
@@ -185,7 +182,7 @@ resource "aws_ecs_service" "user" {
 resource "aws_ecs_service" "course" {
   name            = "course-service"
   cluster         = aws_ecs_cluster.tf-bighead-cluster.id
-  task_definition = aws_ecs_task_definition.course[0].arn
+  task_definition = aws_ecs_task_definition.course.arn
   desired_count   = 1
   load_balancer {
     target_group_arn = aws_lb_target_group.course-tg.arn
@@ -200,10 +197,6 @@ resource "aws_ecs_service" "course" {
   depends_on = [
     aws_lb_listener.was-listener
   ]
-}
-
-output "ecs-container-id" {
-    value = aws_ecs_service.content
 }
 
 output "ecs-cluster-arn" {
